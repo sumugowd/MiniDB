@@ -10,7 +10,8 @@ void RecordManager::addRecord(const Record& record) {
         return;
     }
     records.push_back(record);
-    searchEngine.addTOIndex(record);
+    searchEngine.addToIndex(record);
+    FileManager.saveToFile(records);
     cout << "Record added successfullyl\n";
 }
 
@@ -20,6 +21,7 @@ void RecordManager::deleteRecord(int id) {
         if(it->getID() == id){
             records.erase(it);
             searchEngine.removeFromIndex(id);
+            FileManager.saveToFile(records);
 
             cout << "Record deleted.\n";
             return;
@@ -45,7 +47,8 @@ void RecordManager::updateRecord(int id){
             rec.setAge(age);
 
             // Update index also
-            searchEngine.addTOIndex(rec);
+            searchEngine.addToIndex(rec);
+            FileManager.saveToFile(records);
 
             cout << "Record updated.\n";
             return;
@@ -73,5 +76,15 @@ void RecordManager::searchRecord(int id){
         rec->display();
     }else{
         cout << "Record not found.\n";
+    }
+}
+
+// File Manager
+RecordManager::RecordManager() : FileManager("data/records.txt"){
+    records = FileManager.loadFromFile();
+
+    // rebuild map index
+    for(const auto& rec : records){
+        searchEngine.addToIndex(rec);
     }
 }

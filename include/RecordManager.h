@@ -4,11 +4,13 @@
 #include<vector>
 #include "Record.h"
 #include "SearchEngine.h"
+#include "FileManager.h"
 
 class RecordManager {
     private:
         std::vector<Record> records;
         SearchEngine searchEngine;
+        FileManager FileManager;
 
     public:
         void addRecord(const Record& record);
@@ -16,6 +18,7 @@ class RecordManager {
         void updateRecord(int id);
         void displayAll() const;
         void searchRecord(int id);
+        RecordManager();
 };
 
 #endif

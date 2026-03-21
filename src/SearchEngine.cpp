@@ -3,7 +3,7 @@
 using namespace std;
 
 // Add record to map 
-void SearchEngine::addTOIndex(const Record& record){
+void SearchEngine::addToIndex(const Record& record){
     indexMap[record.getID()] = record;
 }
 

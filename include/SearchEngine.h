@@ -9,7 +9,7 @@ class SearchEngine {
         std::map<int, Record> indexMap;
 
     public:
-        void addTOIndex(const Record& record);
+        void addToIndex(const Record& record);
         void removeFromIndex(int id);
         Record* search(int id);
         bool exists(int id) const;
