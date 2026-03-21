@@ -8,19 +8,13 @@ int main() {
     manager.addRecord(Record(101, "Sumu", 21));
     manager.addRecord(Record(102, "Ravi", 22));
 
-    //Duplicate test
-    manager.addRecord(Record(101, "Test", 30));
+    // Search record
+    manager.searchRecord(101);
 
-    // Display
-    manager.displayAll();
-
-    // Update
-    manager.updateRecord(101);
-
-    // Delete
+    // Delete record
     manager.deleteRecord(102);
 
-    // Display all again
+    // display all
     manager.displayAll();
     
     return 0;

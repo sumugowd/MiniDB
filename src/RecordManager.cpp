@@ -3,22 +3,14 @@
 
 using namespace std;
 
-// Check duplicate ID
-bool RecordManager::isDuplicate(int id) const{
-    for (const auto& rec : records) {
-        if(rec.getID() == id)
-            return true;
-    }
-    return false;
-}
-
 // Add record
 void RecordManager::addRecord(const Record& record) {
-    if(isDuplicate(record.getID())){
+    if(searchEngine.exists(record.getID())){
         cout << "Duplicate ID! Record not added.\n";
         return;
     }
     records.push_back(record);
+    searchEngine.addTOIndex(record);
     cout << "Record added successfullyl\n";
 }
 
@@ -27,6 +19,8 @@ void RecordManager::deleteRecord(int id) {
     for(auto it = records.begin(); it != records.end(); ++it){
         if(it->getID() == id){
             records.erase(it);
+            searchEngine.removeFromIndex(id);
+
             cout << "Record deleted.\n";
             return;
         }
@@ -43,11 +37,15 @@ void RecordManager::updateRecord(int id){
 
             cout << "Enter new name: ";
             cin >> name;
+
             cout << "Enter new age: ";
             cin >> age;
 
             rec.setName(name);
             rec.setAge(age);
+
+            // Update index also
+            searchEngine.addTOIndex(rec);
 
             cout << "Record updated.\n";
             return;
@@ -64,5 +62,16 @@ void RecordManager::displayAll() const {
     }
     for(const auto& rec : records) {
         rec.display();
+    }
+}
+
+// Search Record (FAST using map)
+void RecordManager::searchRecord(int id){
+    Record* rec = searchEngine.search(id);
+
+    if(rec != nullptr) {
+        rec->display();
+    }else{
+        cout << "Record not found.\n";
     }
 }
