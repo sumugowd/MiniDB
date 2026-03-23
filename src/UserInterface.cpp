@@ -14,16 +14,37 @@ void UserInterface::start(){
         cout << "5. Display All Records\n";
         cout << "6. Exit\n";
         cout << "Enter choice: ";
-        cin >> choice;
+        
+        if(!(cin >> choice)){
+            cout << "Invalid input. Please eneter a number.\n";
+
+            cin.clear();
+            cin.ignore(10000,'\n');
+
+            continue;
+        }
 
         switch(choice){
-            case 1: db.addRecord(); break;
-            case 2: db.deleteRecord(); break;
-            case 3: db.updateRecord(); break;
-            case 4: db.searchRecord(); break;
-            case 5: db.displayAll(); break;
-            case 6: cout << "Exiting..\n"; return;
-            default: cout << "Invalid choice\n";
+            case 1: 
+                db.addRecord(); 
+                break;
+            case 2: 
+                db.deleteRecord(); 
+                break;
+            case 3: 
+                db.updateRecord(); 
+                break;
+            case 4: 
+                db.searchRecord(); 
+                break;
+            case 5: 
+                db.displayAll(); 
+                break;
+            case 6: 
+                cout << "Exiting..\n"; 
+                return;
+            default: 
+                cout << "Invalid choice\n";
         }
     }
 }

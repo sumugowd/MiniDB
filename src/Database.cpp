@@ -8,7 +8,12 @@ void Database::addRecord(){
     string name;
 
     cout << "Enter ID: ";
-    cin >> id;
+    if(!(cin >> id)){
+        cout << "Invalid ID input.\n";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return;
+    }
 
     cin.ignore();
 
@@ -16,7 +21,12 @@ void Database::addRecord(){
     getline(cin, name);
 
     cout << "Enter Age: ";
-    cin >> age;
+    if(!(cin >> age)){
+        cout << "Invalid age input.\n";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return;
+    }
 
     manager.addRecord(Record(id, name, age));
 }
@@ -24,7 +34,12 @@ void Database::addRecord(){
 void Database::deleteRecord() {
     int id;
     cout << "Enter ID to delete: ";
-    cin >> id;
+    if(!(cin >> id)){
+        cout << "Invalid ID input\n";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return;
+    }
 
     manager.deleteRecord(id);
 }
@@ -32,7 +47,12 @@ void Database::deleteRecord() {
 void Database::updateRecord(){
     int id;
     cout << "Enter ID to update: ";
-    cin >> id;
+    if(!(cin >> id)){
+        cout << "Invalid ID input\n";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return;
+    }
 
     cin.ignore();
 
@@ -43,7 +63,13 @@ void Database::updateRecord(){
     getline(cin, name);
 
     cout << "Enter new age: ";
-    cin >> age;
+    cout << "Enter Age: ";
+    if(!(cin >> age)){
+        cout << "Invalid age input.\n";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return;
+    }
 
     manager.updateRecord(id, name, age);
 }
@@ -51,7 +77,12 @@ void Database::updateRecord(){
 void Database::searchRecord(){
     int id;
     cout << "Enter ID to search: ";
-    cin >> id;
+    if(!(cin >> id)){
+        cout << "Invalid ID input\n";
+        cin.clear();
+        cin.ignore(10000,'\n');
+        return;
+    }
 
     manager.searchRecord(id);
 }
