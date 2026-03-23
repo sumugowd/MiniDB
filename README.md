@@ -1,7 +1,7 @@
 # 💾 Mini Database System (C++)
 
-A simple command-line based database system built using C++.
-It demonstrates core programming concepts like Object-Oriented Design, data structures, and file handling.
+A command-line based database system built using C++.
+This project demonstrates object-oriented design, efficient data handling using STL, and persistent storage using file handling.
 
 ---
 
@@ -10,10 +10,11 @@ It demonstrates core programming concepts like Object-Oriented Design, data stru
 * ➕ Insert Record
 * ❌ Delete Record
 * ✏️ Update Record
-* 🔍 Search Record (Optimized using `map`)
+* 🔍 Search Record (optimized using `map`)
 * 📄 Display All Records
 * 🚫 Prevent Duplicate IDs
-* 💾 Persistent Storage using File Handling
+* 💾 Persistent Storage using file handling
+* ✅ Input validation and error handling
 
 ---
 
@@ -22,24 +23,26 @@ It demonstrates core programming concepts like Object-Oriented Design, data stru
 * **Object-Oriented Programming (OOP)**
 * **Data Structures**
 
-  * `vector` → Data storage
-  * `map` → Fast search (indexing)
-* **File Handling**
-* **Modular Design (Header + CPP separation)**
+  * `vector` → Record storage
+  * `map` → Fast lookup (indexing)
+* **File Handling** (`ifstream`, `ofstream`)
+* **Modular Design** (Header + CPP separation)
+* **Input Handling & Validation**
 
 ---
 
 ## 🏗️ Project Structure
 
 ```
-MiniDB/ 
-│ 
-├── src/ # Source files (.cpp) 
-├── include/ # Header files (.h) 
-├── data/ # Data storage (ignored by git) 
+MiniDB/
+│
+├── src/              # Source files (.cpp)
+├── include/          # Header files (.h)
+├── data/             # Data storage (ignored by git)
 ├── .gitignore
 └── README.md
 ```
+
 ---
 
 ## ⚙️ How to Run
@@ -66,21 +69,44 @@ g++ src/*.cpp -o app
 data/records.txt
 ```
 
+* Data is:
+
+  * Loaded at startup
+  * Saved automatically after each operation
+
 ---
 
 ## 💡 Design Approach
 
-* Used **vector** for storing records
-* Used **map as an index** for fast lookup
-* Built a layered architecture:
+The project follows a layered and modular architecture:
 
-  * UI → Database → Manager → Storage
+```
+UserInterface → Database → RecordManager → FileManager
+                              ↓
+                         SearchEngine
+```
+
+### Key Design Decisions
+
+* Used **vector** for storing records in memory
+* Used **map as an index** for efficient search operations
+* Separated responsibilities into different classes:
+
+  * `Record` → Data model
+  * `RecordManager` → CRUD operations
+  * `SearchEngine` → Fast lookup using map
+  * `FileManager` → File persistence
+  * `Validator` → Business rule validation
+  * `InputHelper` → Safe input handling
+  * `Database` → Controller layer
+  * `UserInterface` → CLI interaction
 
 ---
 
 ## 📌 Sample Menu
 
 ```
+===== Mini Database System =====
 1. Add Record
 2. Delete Record
 3. Update Record
@@ -91,17 +117,34 @@ data/records.txt
 
 ---
 
+## 🧪 Example Record Format
+
+```
+101 Sumu 21
+102 Ravi Kumar 22
+```
+
+---
+
+## 🔍 Performance Note
+
+* Initial search using `vector` → **O(n)**
+* Optimized using `map` → **O(log n)**
+
+---
+
 ## 🔥 Future Improvements
 
-* Input validation system
-* Support for names with spaces
-* Sorting & filtering
-* CSV/JSON storage
+* Sorting and filtering options
+* Export to CSV/JSON
+* Pagination for large datasets
+* Logging system
+* Database integration (SQLite)
 
 ---
 
 ## 👨‍💻 Author
 
-* Sumanth G
+**Sumanth G**
 
 ---
