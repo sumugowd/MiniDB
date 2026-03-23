@@ -92,3 +92,7 @@ RecordManager::RecordManager() : FileManager("data/records.txt"){
         searchEngine.addToIndex(rec);
     }
 }
+
+const SearchEngine& RecordManager::getSearchEngine() const{
+    return searchEngine;
+}

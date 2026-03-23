@@ -18,6 +18,7 @@ class RecordManager {
         void updateRecord(int id, const std::string& name, int age);
         void displayAll() const;
         void searchRecord(int id);
+        const SearchEngine& getSearchEngine() const;
         RecordManager();
 };
 

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// Validator ID (no duplicates, positive)
+// Validator ID (positive + unique)
 bool Validator::isValidId(int id, const SearchEngine& se){
     if(id <= 0){
         cout << "ID must be positive.\n";
