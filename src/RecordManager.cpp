@@ -1,12 +1,20 @@
 #include "../include/RecordManager.h"
+#include "../include/Validator.h"
 #include <iostream>
 
 using namespace std;
 
 // Add record
 void RecordManager::addRecord(const Record& record) {
-    if(searchEngine.exists(record.getID())){
-        cout << "Duplicate ID! Record not added.\n";
+    if(!Validator::isValidId(record.getID(), searchEngine)){
+        return;
+    }
+
+    if(!Validator::isValidName(record.getName())){
+        return;
+    }
+
+    if(!Validator::isValidAge(record.getAge())){
         return;
     }
     records.push_back(record);
@@ -42,6 +50,10 @@ void RecordManager::updateRecord(int id){
 
             cout << "Enter new age: ";
             cin >> age;
+
+            if(!Validator::isValidName(name) || !Validator::isValidAge(age)){
+                return;
+            }
 
             rec.setName(name);
             rec.setAge(age);
