@@ -39,17 +39,9 @@ void RecordManager::deleteRecord(int id) {
 }
 
 // Update record
-void RecordManager::updateRecord(int id){
+void RecordManager::updateRecord(int id, const string& name, int age){
     for(auto& rec : records){
         if(rec.getID() == id){
-            string name;
-            int age;
-
-            cout << "Enter new name: ";
-            cin >> name;
-
-            cout << "Enter new age: ";
-            cin >> age;
 
             if(!Validator::isValidName(name) || !Validator::isValidAge(age)){
                 return;

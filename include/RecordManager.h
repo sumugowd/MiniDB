@@ -15,7 +15,7 @@ class RecordManager {
     public:
         void addRecord(const Record& record);
         void deleteRecord(int id);
-        void updateRecord(int id);
+        void updateRecord(int id, const std::string& name, int age);
         void displayAll() const;
         void searchRecord(int id);
         RecordManager();

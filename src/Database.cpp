@@ -10,8 +10,10 @@ void Database::addRecord(){
     cout << "Enter ID: ";
     cin >> id;
 
+    cin.ignore();
+
     cout << "Enter Name: ";
-    cin >> name;
+    getline(cin, name);
 
     cout << "Enter Age: ";
     cin >> age;
@@ -32,7 +34,18 @@ void Database::updateRecord(){
     cout << "Enter ID to update: ";
     cin >> id;
 
-    manager.updateRecord(id);
+    cin.ignore();
+
+    string name;
+    int age;
+
+    cout << "Enter new name: ";
+    getline(cin, name);
+
+    cout << "Enter new age: ";
+    cin >> age;
+
+    manager.updateRecord(id, name, age);
 }
 
 void Database::searchRecord(){
